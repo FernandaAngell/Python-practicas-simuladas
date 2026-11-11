@@ -166,25 +166,28 @@ class InterfazSoftwareFJ:
             padx=15,
             pady=10
         )
-
+# Método que procesa la lógica cuando el usuario intenta registrar un nuevo cliente
     def registrar_cliente(self):
 
         try:
+            # Capturo el texto ingresado en el campo nombre eliminando espacios vacíos en los extremos
             nombre = self.nombre_cliente.get().strip()
+            # Capturo el texto ingresado en el campo correo eliminando espacios sobrantes
             correo = self.correo_cliente.get().strip()
+            # Capturo el texto ingresado en el campo teléfono eliminando espacios sobrantes
             telefono = self.telefono_cliente.get().strip()
-
+# Asigno un identificador numérico automático basado en el total actual de clientes
             identificador = len(self.clientes) + 1
-
+# Instancio un nuevo objeto de tipo Cliente con los datos recolectados
             cliente = Cliente(
                 identificador,
                 nombre,
                 correo,
                 telefono
             )
-
+# Agrego el cliente creado a la lista temporal almacenada en memoria
             self.clientes.append(cliente)
-
+# Inserto una nueva fila en la tabla visual con la información del cliente
             self.tabla_clientes.insert(
                 "",
                 "end",
@@ -195,28 +198,30 @@ class InterfazSoftwareFJ:
                     cliente.telefono
                 )
             )
-
+# Registro un evento informativo en el archivo de logs del sistema
             logging.info(
                 f"Cliente registrado: {cliente.nombre}"
             )
-
+# Despliego un cuadro de diálogo informando al usuario que el registro fue exitoso
             messagebox.showinfo(
                 "Registro exitoso",
                 "El cliente fue registrado correctamente."
             )
-
+# Borro el contenido de la caja de texto del nombre para dejarla limpia
             self.nombre_cliente.delete(0, tk.END)
+            # Borro el contenido de la caja de texto del correo
             self.correo_cliente.delete(0, tk.END)
+            # Borro el contenido de la caja de texto del teléfono
             self.telefono_cliente.delete(0, tk.END)
-
+# Actualizo el selector desplegable de clientes disponible en la pestaña de reservas
             self.actualizar_clientes_reserva()
 
         except Exception as error:
-
+# Capturo cualquier excepción o error de validación y lo guardo en el archivo de registro
             logging.exception(
                 "Error al registrar cliente"
             )
-
+# Muestro una ventana emergente indicando el error exacto ocurrido
             messagebox.showerror(
                 "Error",
                 str(error)
