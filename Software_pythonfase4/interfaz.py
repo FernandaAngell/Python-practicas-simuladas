@@ -12,32 +12,33 @@ from servicios import (
     AlquilerEquipo,
     AsesoriaEspecializada
 )
+# Importo la clase encargada de administrar el ciclo de vida y costos de las reservas
 from reservas import Reserva
 
-
+# Configuro los parámetros básicos del registro de eventos guardándolos en un archivo "sistema.log"
 logging.basicConfig(
     filename="sistema.log",
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s"
 )
 
-
+# Defino la clase principal que estructura y controla la interfaz gráfica del software
 class InterfazSoftwareFJ:
-
+# Método inicializador de la clase que configura la ventana principal y sus atributos
     def __init__(self, ventana):
         self.ventana = ventana
         self.ventana.title("Software FJ - Gestion Integral")
         self.ventana.geometry("1000x650")
         self.ventana.minsize(850, 550)
-
+# Inicializo las listas vacías para almacenar los objetos en memoria localmente
         self.clientes = []
         self.servicios = []
         self.reservas = []
-
+# Invoco el método que dibuja la interfaz y sus pestañas principales
         self.crear_interfaz()
-
+# Método para organizar los elementos visuales generales de la ventana principal
     def crear_interfaz(self):
-
+# Creo la etiqueta gráfica que muestra el título principal del software
         titulo = tk.Label(
             self.ventana,
             text="SOFTWARE FJ",
