@@ -1,9 +1,12 @@
-
+# Importo la librería nativa de Python para diseñar interfaces gráficas (Tkinter)
 import tkinter as tk
+# Importo los componentes extendidos de Tkinter (ttk) y la herramienta de cuadros de diálogo (messagebox)
 from tkinter import ttk, messagebox
+# Importo el módulo de Python para gestionar registros de eventos y logs del sistema
 import logging
-
+# Importo la clase base para la creación y gestión de clientes
 from clientes import Cliente
+# Importo las clases de servicios disponibles (reserva de salas, alquiler de equipos y asesorías)
 from servicios import (
     ReservaSala,
     AlquilerEquipo,
