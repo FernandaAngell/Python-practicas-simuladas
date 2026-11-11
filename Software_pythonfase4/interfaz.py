@@ -46,14 +46,14 @@ class InterfazSoftwareFJ:
             fg="#1F4E79"
         )
         titulo.pack(pady=15)
-
+# Creo una etiqueta subtítulo para describir la finalidad del sistema
         subtitulo = tk.Label(
             self.ventana,
             text="Sistema Integral de Clientes, Servicios y Reservas",
             font=("Arial", 12)
         )
         subtitulo.pack(pady=5)
-
+# Configuro el componente de pestañas (Notebook) para segmentar las vistas del programa
         self.pestanas = ttk.Notebook(self.ventana)
         self.pestanas.pack(
             fill="both",
@@ -61,85 +61,89 @@ class InterfazSoftwareFJ:
             padx=15,
             pady=15
         )
-
+# Instancio un marco (frame) independiente para la sección de clientes
         self.pestana_clientes = ttk.Frame(self.pestanas)
+        # Instancio un marco independiente para la sección de servicios
         self.pestana_servicios = ttk.Frame(self.pestanas)
+        # Instancio un marco independiente para la sección de reservas
         self.pestana_reservas = ttk.Frame(self.pestanas)
-
+# Añado la pestaña de clientes al contenedor de pestañas con su respectiva etiqueta
         self.pestanas.add(
             self.pestana_clientes,
             text="Clientes"
         )
-
+# Añado la pestaña de servicios al contenedor principal
         self.pestanas.add(
             self.pestana_servicios,
             text="Servicios"
         )
-
+# Añado la pestaña de reservas al contenedor principal
         self.pestanas.add(
             self.pestana_reservas,
             text="Reservas"
         )
-
+# Llamo a la función que construye el contenido visual de la pestaña de clientes
         self.crear_pestana_clientes()
+        # Llamo a la función que construye el contenido visual de la pestaña de servicios
         self.crear_pestana_servicios()
+        # Llamo a la función que construye el contenido visual de la pestaña de reservas
         self.crear_pestana_reservas()
 
     # ---------------- CLIENTES ----------------
-
+# Método que diseña los componentes gráficos de la pestaña de gestión de clientes
     def crear_pestana_clientes(self):
-
+# Creo un marco enmarcado para agrupar los campos del formulario de registro de clientes
         formulario = ttk.LabelFrame(
             self.pestana_clientes,
             text="Registrar Cliente"
         )
         formulario.pack(fill="x", padx=15, pady=15)
-
+# Etiqueta estática para indicar el campo de texto del nombre
         ttk.Label(
             formulario,
             text="Nombre:"
         ).grid(row=0, column=0, padx=10, pady=10)
-
+# Campo de entrada (Entry) para digitar el nombre del cliente
         self.nombre_cliente = ttk.Entry(
             formulario,
             width=30
         )
         self.nombre_cliente.grid(row=0, column=1, padx=10)
-
+# Etiqueta estática para indicar el campo de correo electrónico
         ttk.Label(
             formulario,
             text="Correo:"
         ).grid(row=1, column=0, padx=10, pady=10)
-
+# Campo de entrada para digitar el correo electrónico del cliente
         self.correo_cliente = ttk.Entry(
             formulario,
             width=30
         )
         self.correo_cliente.grid(row=1, column=1, padx=10)
-
+# Etiqueta estática para el número telefónico
         ttk.Label(
             formulario,
             text="Telefono:"
         ).grid(row=2, column=0, padx=10, pady=10)
-
+# Campo de entrada para digitar el teléfono del cliente
         self.telefono_cliente = ttk.Entry(
             formulario,
             width=30
         )
         self.telefono_cliente.grid(row=2, column=1, padx=10)
-
+# Botón interactivo que ejecuta la acción de guardar el cliente ingresado
         ttk.Button(
             formulario,
             text="Registrar Cliente",
             command=self.registrar_cliente
         ).grid(row=3, column=0, columnspan=2, pady=15)
-
+# Tabla (Treeview) para mostrar en forma de lista los clientes registrados en el sistema
         self.tabla_clientes = ttk.Treeview(
             self.pestana_clientes,
             columns=("ID", "Nombre", "Correo", "Telefono"),
             show="headings"
         )
-
+# Bucle para configurar los títulos y el ancho de cada columna de la tabla de clientes
         for columna in (
             "ID",
             "Nombre",
@@ -155,7 +159,7 @@ class InterfazSoftwareFJ:
                 columna,
                 width=150
             )
-
+# Posiciono y configuro la expansión visual de la tabla dentro de su pestaña
         self.tabla_clientes.pack(
             fill="both",
             expand=True,
