@@ -1,4 +1,4 @@
-﻿
+## Código cometando por los 3 integrantes del grupo...﻿
 import tkinter as tk
 from tkinter import ttk, messagebox
 import logging
